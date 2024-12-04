@@ -7,7 +7,7 @@
         @csrf
         @method('DELETE')
         <div class="form-group">
-            <label for="title" class="control-label">Do you want to delete "{{$book->title}}" Book</label>
+            <label for="title" clasxs="control-label">Do you want to delete "{{$book->title}}" Book</label>
             <div class="col-sm-10">
                 <input type="hidden" class="form-control is-valid " value="{{$book->id}}" id="title" name="id"
                        placeholder="Title">

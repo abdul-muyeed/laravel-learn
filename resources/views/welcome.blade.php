@@ -28,8 +28,15 @@
         <td>{{$book->qty}}</td>
         <td>{{$book->pages}}</td>
         <td>
-            <a href="{{route('books.edit', $book)}}"><i class="bi bi-pencil-square"></i></a>
-            <a href="{{ route('books.show', $book) }}"><i class="bi bi-trash"></i></a>
+            <a class="btn btn-primary" href="{{route('books.edit', $book)}}">Edit</a>
+            <form method="post" action="{{route('books.destroy', $book)}}" onsubmit="return confirm('Are you sure?');"">
+                @csrf
+                @method('DELETE')
+                        <input type="hidden" class="form-control is-valid " value="{{$book->id}}" id="title" name="id"
+                               placeholder="Title">
+              
+                        <button class="btn btn-danger" type="submit" class="btn btn-primary">Delete</button>
+            </form>
         </td>
     </tr>
     @endforeach
@@ -39,6 +46,10 @@
 
    
 </table>
+{{-- <div class="pagination"> --}}
+    {{ $books->links('pagination::bootstrap-4') }}
+{{-- </div> --}}
 <a href="{{route('books.create')}}">Create Book</a>
+<a href="{{route('books.search')}}">Search</a>
    
 @endsection

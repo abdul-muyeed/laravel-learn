@@ -12,7 +12,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::paginate(5);
         return view("welcome", compact("books"));
     }
 
@@ -86,5 +86,12 @@ class BookController extends Controller
         $name = $book->title;
         $book->delete();
         return redirect()->route("home")->with("success"," $name Book deleted successfully");
+    }
+    public function search(Request $request){
+        $search = $request->has('query') ? $request->get('query') : '';
+        $books = Book::where('title', 'like', '%' . $search . '%')
+                     ->orWhere('author', 'like', '%' . $search . '%')
+                     ->paginate(2);
+        return view('books.search', compact('books', 'search'));
     }
 }
