@@ -13,4 +13,6 @@
 `php artisan make:controller BookController -r`
 7. Seed the database:
 ` php artisan db:seed`
+8. ceate model, migration, factory and controller
+`php artisan make:model Book -mrcf`
 
